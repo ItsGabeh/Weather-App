@@ -1,0 +1,177 @@
+<style>
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 1em;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  #header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 2rem;
+    max-height: 2rem;
+    max-width: 35%;
+  }
+
+  #header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 0;
+    flex-shrink: 1;
+    height: 2rem;
+    max-height: 2rem;
+  }
+
+  #header-middle {
+    display: flex;
+    flex-shrink: 1;
+    flex-grow: 1;
+    width: auto;
+    max-width: 15rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    height: 2rem;
+    max-height: 2rem;
+  }
+
+  #app-title {
+    font-size: 20px;
+    /*background: linear-gradient(to right, #00ffb0, #ffd941);*/
+    background: linear-gradient(to right, #2fd19a, #c5a019);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  #side-button {
+    background: #ffffff;
+    width: auto;
+    height: 2rem;
+    max-height: 4rem;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #00ffb0, #ffd941) border-box;
+    border-radius: 0.5rem;
+  }
+
+  #magic-button {
+    width: auto;
+    height: 2rem;
+    max-height: 4rem;
+    background: #ffffff;
+    color: #0b0b0b;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #00ffb0, #ffd941) border-box;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  #search-bar-input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #00ffb0, #ffd941) border-box;
+    color: #000000;
+    padding: 0.5rem;
+    max-width: 10rem;
+  }
+
+  #search-bar-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgb(255, 234, 0);
+    transition: 0.3s ease;
+  }
+
+  #search-bar-input::placeholder {
+    color: #9f9f9f;
+  }
+
+  #search-bar-button {
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #00ffb0, #ffd941) border-box;
+    color: #000000;
+    max-width: 4rem;
+  }
+
+  /*#header-left, #header-middle, #header-right {*/
+  /*  border: 1px solid black;*/
+  /*}*/
+
+  /*Medium devices*/
+  @media (max-width: 768px) {
+    #app-title {
+      font-size: medium;
+    }
+
+    #search-bar-input {
+      max-width: 8rem;
+    }
+
+    #header-left {
+      flex-grow: 1;
+    }
+  }
+
+
+  /*Small devices*/
+  @media (max-width: 600px) {
+
+    #header-left {
+      flex-grow: 1;
+    }
+
+    #app-title {
+      display: none;
+    }
+
+    #search-bar-input {
+      max-width: 5rem;
+    }
+
+    #search-bar-button {
+      border-radius: 0.5rem;
+      max-width: 2rem;
+    }
+  }
+</style>
+
+<header>
+  <div id="header-left">
+    <button id="side-button">
+      <svg width="20" height="20">
+        <rect height="2" width="20" fill=""></rect>
+        <rect y="8" height="2" width="50" fill=""></rect>
+        <rect y="16" height="2" width="50" fill=""></rect>
+      </svg>
+    </button>
+    <h3 id="app-title">{{ appTitle() }}</h3>
+  </div>
+  <div id="header-middle">
+    <input id="search-bar-input" type="text" placeholder="Search" #city>
+    <button id="search-bar-button" (click)="saveCity(city.value)" >
+      <img src="assets/search-button.png" alt="search" width="20" height="20">
+    </button>
+  </div>
+  <div id="header-right">
+    <button id="magic-button">+Magic</button>
+    <svg id="profile-logo" width="50" height="50">
+      <circle cx="25" cy="25" r="20" fill="yellow"></circle>
+    </svg>
+  </div>
+</header>
