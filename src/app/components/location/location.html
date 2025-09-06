@@ -1,0 +1,84 @@
+<style>
+  main {
+    display: flex;
+    height: 8rem;
+    max-height: 8rem;
+    /*border: 1px solid red;*/
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+  }
+
+  #container {
+    /*border: 1px solid blue;*/
+    display: block;
+    padding: 0.5rem 2rem;
+    margin: 0;
+    height: 6rem;
+    max-height: 6rem;
+  }
+
+  #container h1 {
+    text-align: center;
+    /*border: 1px solid black;*/
+    margin: 0 0 1rem;
+    background: linear-gradient(to right, #1db37c, #ba992a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  #container h2 {
+    /*border: 1px solid black;*/
+    margin: 1rem 0 0;
+    background: linear-gradient(to right, #498a70, #ffd12f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  img {
+    width: auto;
+    height: 80%;
+    /*border: 1px solid black;*/
+  }
+
+  @media (max-width: 768px) {
+
+  }
+
+  @media (max-width: 600px) {
+
+    #container {
+      max-width: 50%;
+      padding: 0.5rem 0.5rem;
+      margin-right: 10px;
+    }
+  
+    h1 {
+      font-size: x-large
+    }
+
+    h2 {
+      text-align: center;
+      font-size: medium;
+    }
+
+    img {
+      scale: 0.9;
+    }
+ 
+  }
+
+</style>
+
+<main>
+  <div id="container">
+    @if (weatherService.data(); as d) {
+      <h1>{{ d.name }}</h1>
+      <h2>At: {{ d.coord.lat }} {{ d.coord.lon }}</h2>
+    } @else {
+      <h1>No city to forecast :(</h1>
+      <h2>Search a city</h2>
+    }
+  </div>
+  <img ngSrc="assets/location-icon.svg" height="80" width="80" alt="img" priority>
+</main>
