@@ -1,0 +1,195 @@
+<style>
+  section {
+    /*border: 1px solid red;*/
+    display: block;
+  }
+
+  h3 {
+    font-size: 1.7rem;
+    font-weight: lighter;
+  }
+
+  #temperature-container {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+  }
+
+  #temperature-container > h3 {
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0;
+  }
+
+  #temperature-container > img {
+    max-width: 20%;
+    max-height: 80%;
+  }
+
+  #main-weather-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
+  #main-weather-container > h3 {
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0;
+  }
+
+  #main-weather-container > img {
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  #current-min-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
+  #current-min-container > h3 {
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0;
+  }
+
+  #current-min-container > img {
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  #current-max-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
+  #current-max-container > h3 {
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0;
+  }
+
+  #current-max-container > img {
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+    margin: 15px 0;
+  }
+
+  .container > h3 {
+    text-align: left;
+    padding: 0.5rem;
+    margin: auto 0;
+  }
+
+  .container > img {
+    height: 20%;
+    max-width: 20%;
+    max-height: 80%;
+    filter: drop-shadow(0 0 2px #acacac);
+  }
+
+  .description-container {
+    display: flex;
+    justify-content: right;
+    margin: 15px 0;
+  }
+
+  #description {
+    max-width: 45%;
+    margin: 0 10%;
+    padding: 1rem;
+  }
+
+  section > * {
+    /*border: 1px solid black;*/
+  }
+
+  @media (max-width: 920px) {
+    h3 {
+      font-size: x-large;
+    }
+
+    .container {
+      justify-content: center;
+    }
+
+    .description-container {
+      justify-content: center;
+    }
+
+    #description {
+      margin: 0;
+      font-size: small;
+    }
+  }
+
+  @media (max-width: 600px) {
+    h3 {
+      font-size: large;
+    }
+
+    .container {
+      justify-content: center;
+    }
+
+    .description-container {
+      justify-content: center;
+    }
+
+    #description {
+      margin: 0;
+      font-size: small;
+    }
+  }
+</style>
+
+<section>
+  @if (weatherService.data(); as d) {
+    <div class="container">
+      <h3>Weather: {{d.weather[0].main}}</h3>
+      <img ngSrc="http://openweathermap.org/img/wn/{{d.weather[0].icon}}.png" height="60" width="60" alt="img" class="icon">
+    </div>
+    <div class="container">
+      <h3>Temperature: {{d.main.temp}}</h3>
+      @if (d.main.temp < 20) {
+        <img ngSrc="assets/cold-weather.png" height="60" width="60" alt="img">
+      } @else if (d.main.temp < 30) {
+        <img ngSrc="assets/normal-weather.png" height="60" width="60" alt="img">
+      } @else {
+        <img ngSrc="assets/hot-weather.png" height="60" width="60" alt="img">
+      }
+    </div>
+    <div class="container">
+      @if (d.main.temp_min < 28) {
+        <h3>Current min: {{d.main.temp_min}}</h3>
+        <img ngSrc="assets/cool-temp.png" height="60" width="60" alt="img">
+      } @else {
+        <h3>Current min: {{d.main.temp_min}}</h3>
+        <img ngSrc="assets/warm-temp.png" height="60" width="60" alt="img">
+      }
+    </div>
+    <div class="container">
+      @if (d.main.temp_min < 28) {
+        <h3>Current max: {{d.main.temp_max}}</h3>
+        <img ngSrc="assets/cool-temp.png" height="60" width="60" alt="img">
+      } @else {
+        <h3>Current max: {{d.main.temp_max}}</h3>
+        <img ngSrc="assets/warm-temp.png" height="60" width="60" alt="img">
+      }
+    </div>
+    <div class="description-container">
+      <p id="description">
+        {{d.weather[0].description}}
+      </p>
+    </div>
+  }
+</section>
